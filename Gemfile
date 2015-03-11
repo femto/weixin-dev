@@ -71,6 +71,7 @@ gem 'rails-i18n', '~> 4.0.1'
 
 # redis
 gem 'redis', '~> 3.0.7'
+# FIXME: can not use, raise +Incomplete response received from application+
 gem 'hiredis', '~> 0.4.5'
 
 # Background jobs

@@ -35,14 +35,14 @@ module WeixinDev
       g.helper false
     end
 
-    # config.cache_store = :redis_store, "#{REDIS_CACHE}/cache_store", {expires_in: 90.minutes }
+    config.cache_store = :redis_store, "#{REDIS_CACHE}/cache_store", {expires_in: 90.minutes }
 
-    # config.action_dispatch.rack_cache = {
-    #   metastore:   "#{REDIS_CACHE}/metastore",
-    #   entitystore: "#{REDIS_CACHE}/entitystore"
-    # }
+    config.action_dispatch.rack_cache = {
+      metastore:   "#{REDIS_CACHE}/metastore",
+      entitystore: "#{REDIS_CACHE}/entitystore"
+    }
 
-    # config.identity_cache_store = :redis_store, "#{REDIS_CACHE}/identity_cache_store"
+    config.identity_cache_store = :redis_store, "#{REDIS_CACHE}/identity_cache_store"
 
     config.active_record.schema_format = :sql
   end
