@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :no_login_required, only: [:new, :create]
+  before_action :no_login_required, :access_limiter, only: [:new, :create]
 
   def new
     store_location params[:return_to]
@@ -30,17 +30,17 @@ class SessionsController < ApplicationController
 
   private
 
-  # def access_limiter
-  #   key = "wechat-dev-sessions:limiter:#{request.remote_ip}"
-  #   if $redis.get(key).to_i > 4
-  #     render :access_limiter
-  #   elsif action_name != 'new' # get login page not incr limiter
-  #     $redis.incr(key)
-  #     if $redis.ttl(key) == -1
-  #       $redis.expire(key, 60)
-  #     end
-  #   end
-  # end
+  def access_limiter
+    key = "wechat-dev-sessions:limiter:#{request.remote_ip}"
+    if $redis.get(key).to_i > 4
+      render :access_limiter
+    elsif action_name != 'new' # get login page not incr limiter
+      $redis.incr(key)
+      if $redis.ttl(key) == -1
+        $redis.expire(key, 60)
+      end
+    end
+  end
 
   def login_params
     params.require(:user).permit(:login, :password)
