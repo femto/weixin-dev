@@ -44,9 +44,11 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find params[:id]
+    @topic = Topic.fetch(params[:id])
 
-    if params[:comment_id] and comment = @topic.comments.find_by(id: params.delete(:comment_id))
+    if params[:comment_id] and comment = @topic.comments.fetch_by_id(
+        params.delete(:comment_id)
+      )
       params[:page] = comment.page
     end
 
@@ -85,6 +87,6 @@ class TopicsController < ApplicationController
   end
 
   def find_topic
-    @topic = current_user.topics.find params[:id]
+    @topic = current_user.topics.fetch params[:id]
   end
 end

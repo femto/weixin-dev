@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   def login_from_session
     if session[:user_id].present?
       begin
-        User.find session[:user_id]
+        User.fetch session[:user_id]
       rescue
         session[:user_id] = nil
       end

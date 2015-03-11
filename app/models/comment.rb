@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  include IdentityCache
   include Likeable
   include Trashable
   include MarkdownHelper

@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
-    @notification = current_user.notifications.find params[:id]
+    @notification = current_user.notifications.fetch params[:id]
     @notification.destroy
   end
 

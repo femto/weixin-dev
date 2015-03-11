@@ -2,6 +2,13 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+CONFIG = YAML.load(File.read(File.expand_path('../config.yml', __FILE__)))[Rails.env]
+
+REDIS_CONFIG = CONFIG['redis']
+
+REDIS_CACHE = "redis://#{REDIS_CONFIG['host']}:#{REDIS_CONFIG['port']}/#{REDIS_CONFIG['db']}"
+
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -27,6 +34,15 @@ module WeixinDev
       g.assets false
       g.helper false
     end
+
+    # config.cache_store = :redis_store, "#{REDIS_CACHE}/cache_store", {expires_in: 90.minutes }
+
+    # config.action_dispatch.rack_cache = {
+    #   metastore:   "#{REDIS_CACHE}/metastore",
+    #   entitystore: "#{REDIS_CACHE}/entitystore"
+    # }
+
+    # config.identity_cache_store = :redis_store, "#{REDIS_CACHE}/identity_cache_store"
 
     config.active_record.schema_format = :sql
   end

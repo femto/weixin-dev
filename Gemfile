@@ -109,3 +109,12 @@ end
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.3.0'
 end
+
+# Cache
+gem 'identity_cache'
+gem 'cityhash'
+
+# Redis Store
+gem 'redis-rails'
+gem 'rack-cache'
+gem 'redis-rack-cache'

@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  include IdentityCache
   has_many :topics, dependent: :nullify
 
   validates :name, presence: true

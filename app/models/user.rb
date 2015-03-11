@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include IdentityCache
   include Gravtastic
   gravtastic secure: true, default: 'wavatar', rating: 'G', size: 48
   mount_uploader :avatar, AvatarUploader
@@ -26,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_remember_token(token)
-    user = find_by_id(token.split('$').first)
+    user = fetch_by_id(token.split('$').first)
     (user && Rack::Utils.secure_compare(user.remember_token, token)) ? user : nil
   end
 

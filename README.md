@@ -21,3 +21,7 @@ brew info elasticsearch
 ## deploy
 bundle exec mina deploy --verbose
 
+## Slim
+A Textmate / Sublime Text bundle for Slim
+https://github.com/slim-template/ruby-slim.tmbundle
+

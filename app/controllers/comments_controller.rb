@@ -28,6 +28,6 @@ class CommentsController < ApplicationController
   private
 
   def find_comment
-    @comment = current_user.comments.find params[:id]
+    @comment = current_user.comments.fetch params[:id]
   end
 end

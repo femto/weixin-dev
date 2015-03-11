@@ -1,4 +1,6 @@
 class Notification < ActiveRecord::Base
+  include IdentityCache
+
   belongs_to :user
   belongs_to :subject, polymorphic: true
 

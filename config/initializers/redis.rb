@@ -1,4 +1,4 @@
-$redis = Redis.new(host: CONFIG['redis']['host'],
-                   port: CONFIG['redis']['port'],
-                   db: CONFIG['redis']['db'],
+$redis = Redis.new(host: REDIS_CONFIG['host'],
+                   port: REDIS_CONFIG['port'],
+                   db: REDIS_CONFIG['db'],
                    driver: :hiredis)

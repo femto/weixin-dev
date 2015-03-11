@@ -35,6 +35,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    ar_transaction_changes (1.0.1)
+      activerecord (>= 3.0, < 5.0)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     better_errors (2.1.1)
@@ -55,6 +57,7 @@ GEM
       json (>= 1.7)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    cityhash (0.8.1)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -112,6 +115,9 @@ GEM
       slop (>= 3.4.7)
       term-ansicolor
       terminal-table
+    identity_cache (0.2.3)
+      activerecord (>= 3.2)
+      ar_transaction_changes (~> 1.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -159,6 +165,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-livereload (0.3.15)
       rack
     rack-protection (1.5.3)
@@ -189,8 +197,27 @@ GEM
       ffi (>= 0.5.0)
     redcarpet (3.0.0)
     redis (3.0.7)
+    redis-actionpack (4.0.0)
+      actionpack (~> 4)
+      redis-rack (~> 1.5.0)
+      redis-store (~> 1.1.0)
+    redis-activesupport (4.0.0)
+      activesupport (~> 4)
+      redis-store (~> 1.1.0)
     redis-namespace (1.5.0)
       redis (~> 3.0, >= 3.0.4)
+    redis-rack (1.5.0)
+      rack (~> 1.5)
+      redis-store (~> 1.1.0)
+    redis-rack-cache (1.2.2)
+      rack-cache (~> 1.2)
+      redis-store (~> 1.1.0)
+    redis-rails (4.0.0)
+      redis-actionpack (~> 4)
+      redis-activesupport (~> 4)
+      redis-store (~> 1.1.0)
+    redis-store (1.1.4)
+      redis (>= 2.2)
     rouge (1.3.4)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -255,6 +282,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.1.0)
   carrierwave (~> 0.9.0)
+  cityhash
   coffee-rails (~> 4.0.0)
   factory_girl_rails (~> 4.3.0)
   font-awesome-sass (~> 4.1.0)
@@ -263,6 +291,7 @@ DEPENDENCIES
   hiredis (~> 0.4.5)
   http_accept_language (~> 2.0.1)
   i18n-tasks (~> 0.3.2)
+  identity_cache
   jbuilder (~> 1.2)
   jquery-rails
   kaminari (~> 0.15.1)
@@ -274,11 +303,14 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   quiet_assets
+  rack-cache
   rack-livereload
   rails (= 4.1.5)
   rails-i18n (~> 4.0.1)
   redcarpet (~> 3.0.0)
   redis (~> 3.0.7)
+  redis-rack-cache
+  redis-rails
   rouge (~> 1.3.1)
   sass-rails (~> 4.0.2)
   sidekiq

@@ -1,4 +1,5 @@
 class Topic < ActiveRecord::Base
+  include IdentityCache
   include Likeable
   include Trashable
   include Subscribable
