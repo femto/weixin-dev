@@ -14,7 +14,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 set :domain, 'weixin-dev.com'
 
 set :deploy_to, '/home/deploy/www/weixin-dev.com'
-set :repository, 'https://github.com/lanrion/wechat-dev.git'
+set :repository, 'https://github.com/lanrion/weixin-dev.git'
 set :branch, 'master'
 
 set :keep_releases, 3
