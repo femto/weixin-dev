@@ -1,7 +1,7 @@
 - @page_title = @topic.title
 
 .main
-  .container
+  .container.topic-detail
     .row
       .col-md-9
         .panel
@@ -26,7 +26,7 @@
                         = ' · '
                         a href=categoried_topics_path(category_id: @topic.category.slug)
                           = @topic.category.name
-                    article.comment-body
+                    article.comment-body.markdown-body
                       = markdown_format @topic.body
                     .list-group-item-actions.clearfix
                       .pull-right
