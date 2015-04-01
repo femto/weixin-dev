@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
   before_action :find_topic, only: [:edit, :update, :trash]
 
   def index
-    @topics = Topic.includes(:user, :category).page(params[:page])
+    @topics = Topic.order("updated_at desc, created_at desc")
+                  .includes(:user, :category).page(params[:page])
 
     if params[:category_id]
       @category = Category.where('lower(slug) = ?', params[:category_id].downcase).first!
