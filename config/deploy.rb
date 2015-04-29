@@ -2,8 +2,8 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require "mina_sidekiq/tasks"
-# require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
-require 'mina/rvm'    # for rvm support. (http://rvm.io)
+require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
+#require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -14,7 +14,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 set :domain, 'weixin-dev.com'
 
 set :deploy_to, '/home/deploy/www/weixin-dev.com'
-set :repository, 'https://github.com/lanrion/weixin-dev.git'
+set :repository, 'https://github.com/femto/weixin-dev.git'
 set :branch, 'master'
 
 set :keep_releases, 3
@@ -38,11 +38,11 @@ set :shared_paths, ['config/database.yml', 'log', 'public/uploads', "config/conf
 # `mina deploy` or `mina rake`.
 task :environment do
   # If you're using rbenv, use this to load the rbenv environment.
-  # Be sure to commit your .rbenv-version to your repository.
-  # invoke :'rbenv:load'
+  ## Be sure to commit your .rbenv-version to your repository.
+  invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-2.2.1]'
+  #invoke :'rvm:use[ruby-2.2.1]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.

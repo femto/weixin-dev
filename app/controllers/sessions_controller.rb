@@ -13,8 +13,10 @@ class SessionsController < ApplicationController
               User.where('lower(username) = lower(?)', login).first
             end
 
-    if @user && @user.authenticate(login_params[:password])
+    if @user && @user.valid_password?(login_params[:password])
+        #@user.authenticate(login_params[:password])
       login_as @user
+      sign_in(:user, @user)
       remember_me
       redirect_back_or_default root_url
     else

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  establish_connection "opensesame_#{Rails.env}".to_sym
   include IdentityCache
   include Gravtastic
   gravtastic secure: true, default: 'wavatar', rating: 'G', size: 48
@@ -22,8 +23,32 @@ class User < ActiveRecord::Base
   scope :unlocked, -> { where(locked_at: nil) }
   scope :locked, -> { where.not(locked_at: nil) }
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  validates :user_type, :presence => true
+  def username
+    name
+  end
+  def username=(*args)
+    self.send("name=",*args)
+  end
+
+  def confirmed?
+    true
+  end
+
+  def locked_at
+    nil
+  end
+
+
+
+
   def remember_token
-    [id, Digest::SHA512.hexdigest(password_digest)].join('$')
+    [id, Digest::SHA512.hexdigest(encrypted_password)].join('$')
   end
 
   def self.find_by_remember_token(token)

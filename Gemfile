@@ -68,6 +68,8 @@ gem 'http_accept_language', '~> 2.0.1'
 
 # i18n
 gem 'rails-i18n', '~> 4.0.1'
+gem "devise"
+gem "devise-i18n"
 
 # redis
 gem 'redis', '~> 3.0.7'
@@ -81,6 +83,7 @@ gem 'sinatra', :require => nil
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/jonleighton/spring
   gem 'spring'
+  gem 'letter_opener'
 
   # Livereload
   gem 'guard-livereload', require: false
